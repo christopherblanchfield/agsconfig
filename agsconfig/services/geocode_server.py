@@ -14,10 +14,11 @@ install_aliases()
 from enum import Enum
 
 # Local imports
+from .max_min_instances_mixin import MaxMinInstancesMixin
 from .service_base import ServiceBase
 from ..editing.edit_prop import EditorProperty
 
-class GeocodeServer(ServiceBase):
+class GeocodeServer(ServiceBase, MaxMinInstancesMixin):
 
     class Capability(Enum):
         geocode = "Geocode"

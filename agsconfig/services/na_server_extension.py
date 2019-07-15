@@ -10,10 +10,11 @@ install_aliases()
 # pylint: enable=wildcard-import,unused-wildcard-import,wrong-import-order,wrong-import-position
 
 from enum import Enum
+from .max_min_instances_mixin import MaxMinInstancesMixin
 from ..editing.edit_prop import EditorProperty
 from .extension_base import ExtensionBase
 
-class NAServerExtension(ExtensionBase):
+class NAServerExtension(ExtensionBase, MaxMinInstancesMixin):
     """Network Analysis server extension properties for ArcGIS Server services."""
 
     def __init__(self, editor):

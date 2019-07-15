@@ -17,6 +17,7 @@ from enum import Enum
 from .cacheable_core_mixin import CacheableCoreMixin
 from .service_base import ServiceBase
 from .vector_tile_server_extension import VectorTileServerExtension
+from .feature_server_extension import FeatureServerExtension
 from ..editing.edit_prop import EditorProperty
 
 

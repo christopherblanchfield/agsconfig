@@ -8,12 +8,13 @@ install_aliases()
 
 from enum import Enum
 
+from .max_min_instances_mixin import MaxMinInstancesMixin
 from .output_dir_mixin import OutputDirMixin
 from .service_base import ServiceBase
 from .wps_server_extension import WPSServerExtension
 from ..editing.edit_prop import EditorProperty
 
-class GeoprocessingServer(OutputDirMixin, ServiceBase):
+class GeoprocessingServer(OutputDirMixin, MaxMinInstancesMixin, ServiceBase):
 
     _wps_server_extension = None
 

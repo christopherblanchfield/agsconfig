@@ -22,23 +22,6 @@ from ..editing.edit_prop import EditorProperty as _EditorProperty
 
 MIDNIGHT = _datetime.time(0, 0)
 
-
-def max_instances_constraint(self, value):
-    if value < self.min_instances:
-        # Max instances can't be smaller than min instances, so bring min instances down to the same size if smaller
-        self.min_instances = value
-
-    return value
-
-
-def min_instances_constraint(self, value):
-    if value > self.max_instances:
-        # Min instances can't be bigger than max instances, so make the same size
-        self.max_instances = value
-
-    return value
-
-
 class ServiceBase(_ModelBase):
     """Contains base settings/configuration that are common across ArcGIS Service types."""
 
@@ -262,32 +245,6 @@ class ServiceBase(_ModelBase):
         }
     )
 
-    max_instances = _EditorProperty(
-        {
-            "constraints": {
-                "int": True,
-                "min": 1,
-                "func": max_instances_constraint
-            },
-            "formats": {
-                "agsJson": {
-                    "paths": [{
-                        "document": "main",
-                        "path": "$.maxInstancesPerNode"
-                    }]
-                },
-                "sddraft": {
-                    "paths": [
-                        {
-                            "path":
-                            "./Configurations/SVCConfiguration/Definition/Props/PropertyArray/PropertySetProperty[Key = 'MaxInstances']/Value"
-                        }
-                    ]
-                }
-            }
-        }
-    )
-
     max_scale = _EditorProperty(
         {
             "constraints": {
@@ -309,32 +266,6 @@ class ServiceBase(_ModelBase):
                         {
                             "path":
                             "./Configurations/SVCConfiguration/Definition/ConfigurationProperties/PropertyArray/PropertySetProperty[Key = 'maxScale']/Value"
-                        }
-                    ]
-                }
-            }
-        }
-    )
-
-    min_instances = _EditorProperty(
-        {
-            "constraints": {
-                "int": True,
-                "min": 0,
-                "func": min_instances_constraint
-            },
-            "formats": {
-                "agsJson": {
-                    "paths": [{
-                        "document": "main",
-                        "path": "$.minInstancesPerNode"
-                    }]
-                },
-                "sddraft": {
-                    "paths": [
-                        {
-                            "path":
-                            "./Configurations/SVCConfiguration/Definition/Props/PropertyArray/PropertySetProperty[Key = 'MinInstances']/Value"
                         }
                     ]
                 }

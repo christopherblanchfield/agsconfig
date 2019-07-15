@@ -13,6 +13,7 @@ install_aliases()
 
 from enum import Enum
 
+from .max_min_instances_mixin import MaxMinInstancesMixin
 from .cacheable_core_mixin import CacheableCoreMixin
 from .cacheable_ext_mixin import CacheableExtMixin
 from .image_dimensions_mixin import ImageDimensionsMixin
@@ -22,7 +23,8 @@ from ..editing.edit_prop import EditorProperty
 from ..services.feature_server_extension import FeatureServerExtension
 
 
-class HostedFeatureServer(MaxRecordCountMixin, CacheableExtMixin, CacheableCoreMixin, ServiceBase):
+class HostedFeatureServer(MaxRecordCountMixin, CacheableExtMixin, 
+                        MaxMinInstancesMixin, CacheableCoreMixin, ServiceBase):
     """ Class for editing hosted feature services."""
     _feature_server_extension = None
 
