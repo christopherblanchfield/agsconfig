@@ -17,6 +17,7 @@ from .cacheable_core_mixin import CacheableCoreMixin
 from .cacheable_ext_mixin import CacheableExtMixin
 from .image_dimensions_mixin import ImageDimensionsMixin
 from .jpip_server_extension import JPIPServerExtension
+from .output_dir_mixin import OutputDirMixin
 from .service_base import ServiceBase
 from .wcs_server_extension import WCSServerExtension
 from .wms_server_extension import WMSServerExtension
@@ -219,11 +220,9 @@ class ImageServer(CacheableExtMixin, CacheableCoreMixin, ImageDimensionsMixin,
                             ]
                         }
                     ],
-                    "conversions": [
-                        {
-                            "id": "numberToString"
-                        }
-                    ]
+                    "conversions": [{
+                        "id": "numberToString"
+                    }]
                 }
             }
         }
@@ -301,11 +300,9 @@ class ImageServer(CacheableExtMixin, CacheableCoreMixin, ImageDimensionsMixin,
                             "./Configurations/SVCConfiguration/Definition/ConfigurationProperties/PropertyArray/PropertySetProperty[Key='MaxDownloadImageCount']/Value"
                         }
                     ],
-                    "conversions": [
-                        {
-                            "id": "numberToString"
-                        }
-                    ]
+                    "conversions": [{
+                        "id": "numberToString"
+                    }]
                 }
             }
         }
@@ -325,11 +322,9 @@ class ImageServer(CacheableExtMixin, CacheableCoreMixin, ImageDimensionsMixin,
                             "./Configurations/SVCConfiguration/Definition/ConfigurationProperties/PropertyArray/PropertySetProperty[Key='MaxDownloadSizeLimit']/Value"
                         }
                     ],
-                    "conversions": [
-                        {
-                            "id": "numberToString"
-                        }
-                    ]
+                    "conversions": [{
+                        "id": "numberToString"
+                    }]
                 }
             }
         }
@@ -349,11 +344,9 @@ class ImageServer(CacheableExtMixin, CacheableCoreMixin, ImageDimensionsMixin,
                             "./Configurations/SVCConfiguration/Definition/ConfigurationProperties/PropertyArray/PropertySetProperty[Key='MaxMosaicImageCount']/Value"
                         }
                     ],
-                    "conversions": [
-                        {
-                            "id": "numberToString"
-                        }
-                    ]
+                    "conversions": [{
+                        "id": "numberToString"
+                    }]
                 }
             }
         }
@@ -385,11 +378,9 @@ class ImageServer(CacheableExtMixin, CacheableCoreMixin, ImageDimensionsMixin,
                             ]
                         }
                     ],
-                    "conversions": [
-                        {
-                            "id": "boolToString"
-                        }
-                    ]
+                    "conversions": [{
+                        "id": "boolToString"
+                    }]
                 }
             }
         }

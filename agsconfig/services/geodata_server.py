@@ -15,6 +15,7 @@ from enum import Enum
 
 # Local imports
 from .max_min_instances_mixin import MaxMinInstancesMixin
+from .output_dir_mixin import OutputDirMixin
 from .service_base import ServiceBase
 from ..editing.edit_prop import EditorProperty
 
@@ -34,12 +35,10 @@ class GeodataServer(ServiceBase, MaxMinInstancesMixin):
             "formats": {
                 "agsJson": {
                     "paths": [{
-                        "document": "main",
-                        "path": "$.capabilities"
+                        "document": "main", "path": "$.capabilities"
                     }],
                     "conversions": [{
-                        "id": "enumToString",
-                        "enum": "Capability"
+                        "id": "enumToString", "enum": "Capability"
                     }, {
                         "id": "stringToCsv"
                     }]
@@ -52,8 +51,7 @@ class GeodataServer(ServiceBase, MaxMinInstancesMixin):
                         }
                     ],
                     "conversions": [{
-                        "id": "enumToString",
-                        "enum": "Capability"
+                        "id": "enumToString", "enum": "Capability"
                     }, {
                         "id": "stringToCsv"
                     }]
@@ -71,10 +69,8 @@ class GeodataServer(ServiceBase, MaxMinInstancesMixin):
                 "agsJson": {
                     "constraints": {
                         "readOnly": True
-                    },
-                    "paths": [{
-                        "document": "main",
-                        "path": "$.serviceName"
+                    }, "paths": [{
+                        "document": "main", "path": "$.serviceName"
                     }]
                 },
                 "sddraft": {
