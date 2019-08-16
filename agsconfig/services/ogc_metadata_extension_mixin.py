@@ -15,6 +15,7 @@ from ..editing.edit_prop import EditorProperty
 class OGCMetadataExtensionMixin(object):
 
     # ArcGIS Server JSON key names
+    _AGSJSON_KEY_CONTACT_ORGANIZATION = "contactOrganization"
     _AGSJSON_KEY_ABSTRACT = "abstract"
     _AGSJSON_KEY_ACCESS_CONSTRAINTS = "accessConstraints"
     _AGSJSON_KEY_ADDRESS = "address"
@@ -34,6 +35,7 @@ class OGCMetadataExtensionMixin(object):
     _AGSJSON_KEY_TITLE = "title"
 
     # Service Definition Draft key names
+    _SDDRAFT_KEY_CONTACT_ORGANIZATION = "contactOrganization"
     _SDDRAFT_KEY_ABSTRACT = "abstract"
     _SDDRAFT_KEY_ACCESS_CONSTRAINTS = "accessConstraints"
     _SDDRAFT_KEY_ADMINISTRATIVE_AREA = "administrativeArea"
@@ -51,7 +53,7 @@ class OGCMetadataExtensionMixin(object):
     _SDDRAFT_KEY_POSTAL_CODE = "postalCode"
     _SDDRAFT_KEY_PROVIDER_NAME = "providerName"
     _SDDRAFT_KEY_TITLE = "title"
-    
+
 
     abstract = EditorProperty(
         {
@@ -143,7 +145,7 @@ class OGCMetadataExtensionMixin(object):
                 "sddraft": {
                     "paths": [
                         {# yapf: disable
-                            "path": lambda extension_name, _SDDRAFT_KEY_ADMINISTRATIVE_AREA: 
+                            "path": lambda extension_name, _SDDRAFT_KEY_ADMINISTRATIVE_AREA:
                                 "./Configurations/SVCConfiguration/Definition/Extensions/SVCExtension[TypeName='{}']/Props/PropertyArray/PropertySetProperty[Key='{}']/Value".format(extension_name, _SDDRAFT_KEY_ADMINISTRATIVE_AREA)
                         }# yapf: enable
                     ]
@@ -423,6 +425,31 @@ class OGCMetadataExtensionMixin(object):
                         {# yapf: disable
                             "path": lambda extension_name, _SDDRAFT_KEY_POSTAL_CODE:
                                 "./Configurations/SVCConfiguration/Definition/Extensions/SVCExtension[TypeName='{}']/Props/PropertyArray/PropertySetProperty[Key='{}']/Value".format(extension_name, _SDDRAFT_KEY_POSTAL_CODE)
+                        }# yapf: enable
+                    ]
+                }
+            }
+        }
+    )
+
+    contact_organization = EditorProperty(
+        {
+            "formats": {
+                "agsJson": {
+                    "paths": [
+                        {# yapf: disable
+                            "document": "main",
+                            "path": lambda extension_name, _AGSJSON_KEY_CONTACT_ORGANIZATION: "$.extensions[?(@.typeName = '{}')].properties.{}".format(extension_name, _AGSJSON_KEY_CONTACT_ORGANIZATION),
+                            "parentPath": lambda extension_name: "$.extensions[?(@.typeName = '{}')].properties".format(extension_name),
+                            "key": lambda _AGSJSON_KEY_CONTACT_ORGANIZATION: _AGSJSON_KEY_CONTACT_ORGANIZATION
+                        }# yapf: enable
+                    ]
+                },
+                "sddraft": {
+                    "paths": [
+                        {# yapf: disable
+                            "path": lambda extension_name, _SDDRAFT_KEY_CONTACT_ORGANIZATION:
+                                "./Configurations/SVCConfiguration/Definition/Extensions/SVCExtension[TypeName='{}']/Props/PropertyArray/PropertySetProperty[Key='{}']/Value".format(extension_name, _SDDRAFT_KEY_CONTACT_ORGANIZATION)
                         }# yapf: enable
                     ]
                 }

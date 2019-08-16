@@ -23,8 +23,9 @@ from ..editing.edit_prop import EditorProperty
 from ..services.feature_server_extension import FeatureServerExtension
 
 
-class HostedFeatureServer(MaxRecordCountMixin, CacheableExtMixin, 
-                        MaxMinInstancesMixin, CacheableCoreMixin, ServiceBase):
+class HostedFeatureServer(
+    MaxRecordCountMixin, MaxMinInstancesMixin, CacheableCoreMixin, ServiceBase
+):
     """ Class for editing hosted feature services."""
     _feature_server_extension = None
 
@@ -46,12 +47,10 @@ class HostedFeatureServer(MaxRecordCountMixin, CacheableExtMixin,
             "formats": {
                 "agsJson": {
                     "paths": [{
-                        "document": "main",
-                        "path": "$.capabilities"
+                        "document": "main", "path": "$.capabilities"
                     }],
                     "conversions": [{
-                        "id": "enumToString",
-                        "enum": "Capability"
+                        "id": "enumToString", "enum": "Capability"
                     }, {
                         "id": "stringToCsv"
                     }]
@@ -64,8 +63,7 @@ class HostedFeatureServer(MaxRecordCountMixin, CacheableExtMixin,
                         }
                     ],
                     "conversions": [{
-                        "id": "enumToString",
-                        "enum": "Capability"
+                        "id": "enumToString", "enum": "Capability"
                     }, {
                         "id": "stringToCsv"
                     }]
@@ -105,8 +103,7 @@ class HostedFeatureServer(MaxRecordCountMixin, CacheableExtMixin,
             "formats": {
                 "agsJson": {
                     "paths": [{
-                        "document": "main",
-                        "path": "$.properties.allowTrueCurvesUpdates"
+                        "document": "main", "path": "$.properties.allowTrueCurvesUpdates"
                     }]
                 },
                 "sddraft": {
@@ -129,8 +126,7 @@ class HostedFeatureServer(MaxRecordCountMixin, CacheableExtMixin,
             "formats": {
                 "agsJson": {
                     "paths": [{
-                        "document": "main",
-                        "path": "$.properties.onlyAllowTrueCurveUpdatesByTrueCurveClients"
+                        "document": "main", "path": "$.properties.onlyAllowTrueCurveUpdatesByTrueCurveClients"
                     }]
                 },
                 "sddraft": {
@@ -153,8 +149,7 @@ class HostedFeatureServer(MaxRecordCountMixin, CacheableExtMixin,
             "formats": {
                 "agsJson": {
                     "paths": [{
-                        "document": "main",
-                        "path": "$.properties.enableZDefaults"
+                        "document": "main", "path": "$.properties.enableZDefaults"
                     }]
                 },
                 "sddraft": {
@@ -177,8 +172,7 @@ class HostedFeatureServer(MaxRecordCountMixin, CacheableExtMixin,
             "formats": {
                 "agsJson": {
                     "paths": [{
-                        "document": "main",
-                        "path": "$.properties.zDefaultValue"
+                        "document": "main", "path": "$.properties.zDefaultValue"
                     }]
                 },
                 "sddraft": {
@@ -198,8 +192,7 @@ class HostedFeatureServer(MaxRecordCountMixin, CacheableExtMixin,
             "formats": {
                 "agsJson": {
                     "paths": [{
-                        "document": "main",
-                        "path": "$.properties.allowUpdateWithoutMValues"
+                        "document": "main", "path": "$.properties.allowUpdateWithoutMValues"
                     }]
                 },
                 "sddraft": {
@@ -272,8 +265,7 @@ class HostedFeatureServer(MaxRecordCountMixin, CacheableExtMixin,
             "formats": {
                 "agsJson": {
                     "paths": [{
-                        "document": "main",
-                        "path": "$.properties.syncEnabled"
+                        "document": "main", "path": "$.properties.syncEnabled"
                     }]
                 },
                 "sddraft": {
@@ -286,6 +278,510 @@ class HostedFeatureServer(MaxRecordCountMixin, CacheableExtMixin,
                     "conversions": [{
                         "id": "boolToString"
                     }]
+                }
+            }
+        }
+    )
+
+    portal_url = EditorProperty(
+        {
+            "formats": {
+                "agsJson": {
+                    "paths": [{
+                        "document": "main", "parentPath": "$.properties", "path": "$.properties.portalURL"
+                    }]
+                },
+                "sddraft": {
+                    "paths": [
+                            {
+                            "parentPath": "./StagingSettings/PropertyArray",
+                            "path": "./StagingSettings/PropertyArray/PropertySetProperty[Key='PortalURL']/Value",
+                            "tag": "PropertySetProperty",
+                            "attributes": {
+                                "{http://www.w3.org/2001/XMLSchema-instance}type": "typens:PropertySetProperty"
+                            },
+                            "children": [
+                                {
+                                    "tag": "Key",
+                                    "value": "PortalURL"
+                                },
+                                {
+                                    "tag": "Value",
+                                    "attributes": {
+                                        "{http://www.w3.org/2001/XMLSchema-instance}type": "xs:string"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    )
+
+    user_name = EditorProperty(
+        {
+            "formats": {
+                "agsJson": {
+                    "paths": [{
+                        "document": "main", "parentPath": "$.properties", "path": "$.properties.userName"
+                    }]
+                },
+                "sddraft": {
+                    "paths": [
+                        {
+                            "parentPath": "./StagingSettings/PropertyArray",
+                            "path": "./StagingSettings/PropertyArray/PropertySetProperty[Key='UserName']/Value",
+                            "tag": "PropertySetProperty",
+                            "attributes": {
+                                "{http://www.w3.org/2001/XMLSchema-instance}type": "typens:PropertySetProperty"
+                            },
+                            "children": [
+                                {
+                                    "tag": "Key",
+                                    "value": "UserName"
+                                },
+                                {
+                                    "tag": "Value",
+                                    "attributes": {
+                                        "{http://www.w3.org/2001/XMLSchema-instance}type": "xs:string"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    )
+
+    package_table_list = EditorProperty(
+        {
+            "formats": {
+                "agsJson": {
+                    "paths": [{
+                        "document": "main", "parentPath": "$.properties", "path": "$.properties.packageTableList"
+                    }]
+                },
+                "sddraft": {
+                    "paths": [
+                        {
+                            "parentPath": "./StagingSettings/PropertyArray",
+                            "path": "./StagingSettings/PropertyArray/PropertySetProperty[Key='PackageTableList']/Value",
+                            "tag": "PropertySetProperty",
+                            "attributes": {
+                                "{http://www.w3.org/2001/XMLSchema-instance}type": "typens:PropertySetProperty"
+                            },
+                            "children": [
+                                {
+                                    "tag": "Key",
+                                    "value": "PackageTableList"
+                                },
+                                {
+                                    "tag": "Value",
+                                    "attributes": {
+                                        "{http://www.w3.org/2001/XMLSchema-instance}type": "xs:string"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    )
+
+    is_portal = EditorProperty(
+        {
+            "formats": {
+                "agsJson": {
+                    "paths": [{
+                        "document": "main", "parentPath": "$.properties", "path": "$.properties.isPortal"
+                    }]
+                },
+                "sddraft": {
+                    "paths": [
+                        {
+                            "parentPath": "./StagingSettings/PropertyArray",
+                            "path": "./StagingSettings/PropertyArray/PropertySetProperty[Key='IsPortal']/Value",
+                            "tag": "PropertySetProperty",
+                            "attributes": {
+                                "{http://www.w3.org/2001/XMLSchema-instance}type": "typens:PropertySetProperty"
+                            },
+                            "children": [
+                                {
+                                    "tag": "Key",
+                                    "value": "IsPortal"
+                                },
+                                {
+                                    "tag": "Value",
+                                    "attributes": {
+                                        "{http://www.w3.org/2001/XMLSchema-instance}type": "xs:string"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    )
+
+    enable_wfs_server = EditorProperty(
+        {
+            "formats": {
+                "agsJson": {
+                    "paths": [{
+                        "document": "main", "parentPath": "$.properties", "path": "$.properties.enableWFSServer"
+                    }]
+                },
+                "sddraft": {
+                    "paths": [
+                        {
+                            "parentPath": "./StagingSettings/PropertyArray",
+                            "path": "./StagingSettings/PropertyArray/PropertySetProperty[Key='EnableWFSServer']/Value",
+                            "tag": "PropertySetProperty",
+                            "attributes": {
+                                "{http://www.w3.org/2001/XMLSchema-instance}type": "typens:PropertySetProperty"
+                            },
+                            "children": [
+                                {
+                                    "tag": "Key",
+                                    "value": "EnableWFSServer"
+                                },
+                                {
+                                    "tag": "Value",
+                                    "attributes": {
+                                        "{http://www.w3.org/2001/XMLSchema-instance}type": "xs:string"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    )
+
+    cook_tiles_locally = EditorProperty(
+        {
+            "formats": {
+                "agsJson": {
+                    "paths": [{
+                        "document": "main", "parentPath": "$.properties", "path": "$.properties.cookTilesLocally"
+                    }]
+                },
+                "sddraft": {
+                    "paths": [
+                        {
+                            "parentPath": "./StagingSettings/PropertyArray",
+                            "path": "./StagingSettings/PropertyArray/PropertySetProperty[Key='CookTilesLocally']/Value",
+                            "tag": "PropertySetProperty",
+                            "attributes": {
+                                "{http://www.w3.org/2001/XMLSchema-instance}type": "typens:PropertySetProperty"
+                            },
+                            "children": [
+                                {
+                                    "tag": "Key",
+                                    "value": "CookTilesLocally"
+                                },
+                                {
+                                    "tag": "Value",
+                                    "attributes": {
+                                        "{http://www.w3.org/2001/XMLSchema-instance}type": "xs:string"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    )
+
+    avoid_data_projection = EditorProperty(
+        {
+            "formats": {
+                "agsJson": {
+                    "paths": [{
+                        "document": "main", "parentPath": "$.properties", "path": "$.properties.avoidDataProjection"
+                    }]
+                },
+                "sddraft": {
+                    "paths": [
+                        {
+                            "parentPath": "./StagingSettings/PropertyArray",
+                            "path": "./StagingSettings/PropertyArray/PropertySetProperty[Key='avoidDataProjection']/Value",
+                            "tag": "PropertySetProperty",
+                            "attributes": {
+                                "{http://www.w3.org/2001/XMLSchema-instance}type": "typens:PropertySetProperty"
+                            },
+                            "children": [
+                                {
+                                    "tag": "Key",
+                                    "value": "avoidDataProjection"
+                                },
+                                {
+                                    "tag": "Value",
+                                    "attributes": {
+                                        "{http://www.w3.org/2001/XMLSchema-instance}type": "xs:string"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    )
+
+    scene_service_name = EditorProperty(
+        {
+            "formats": {
+                "agsJson": {
+                    "paths": [{
+                        "document": "main", "parentPath": "$.properties", "path": "$.properties.sceneServiceName"
+                    }]
+                },
+                "sddraft": {
+                    "paths": [
+                        {
+                            "parentPath": "./StagingSettings/PropertyArray",
+                            "path": "./StagingSettings/PropertyArray/PropertySetProperty[Key='SceneServiceName']/Value",
+                            "tag": "PropertySetProperty",
+                            "attributes": {
+                                "{http://www.w3.org/2001/XMLSchema-instance}type": "typens:PropertySetProperty"
+                            },
+                            "children": [
+                                {
+                                    "tag": "Key",
+                                    "value": "SceneServiceName"
+                                },
+                                {
+                                    "tag": "Value",
+                                    "attributes": {
+                                        "{http://www.w3.org/2001/XMLSchema-instance}type": "xs:string"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    )
+
+    portal_version = EditorProperty(
+        {
+            "formats": {
+                "agsJson": {
+                    "paths": [{
+                        "document": "main", "parentPath": "$.properties", "path": "$.properties.sceneServiceName"
+                    }]
+                },
+                "sddraft": {
+                    "paths": [
+                        {
+                            "parentPath": "./StagingSettings/PropertyArray",
+                            "path": "./StagingSettings/PropertyArray/PropertySetProperty[Key='PortalVersion']/Value",
+                            "tag": "PropertySetProperty",
+                            "attributes": {
+                                "{http://www.w3.org/2001/XMLSchema-instance}type": "typens:PropertySetProperty"
+                            },
+                            "children": [
+                                {
+                                    "tag": "Key",
+                                    "value": "PortalVersion"
+                                },
+                                {
+                                    "tag": "Value",
+                                    "attributes": {
+                                        "{http://www.w3.org/2001/XMLSchema-instance}type": "xs:string"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    )
+
+    server_runtime_version = EditorProperty(
+        {
+            "formats": {
+                "agsJson": {
+                    "paths": [{
+                        "document": "main", "parentPath": "$.properties", "path": "$.properties.serverRuntimeVersion"
+                    }]
+                },
+                "sddraft": {
+                    "paths": [
+                        {
+                            "parentPath": "./StagingSettings/PropertyArray",
+                            "path": "./StagingSettings/PropertyArray/PropertySetProperty[Key='ServerRunTimeVersion']/Value",
+                            "tag": "PropertySetProperty",
+                            "attributes": {
+                                "{http://www.w3.org/2001/XMLSchema-instance}type": "typens:PropertySetProperty"
+                            },
+                            "children": [
+                                {
+                                    "tag": "Key",
+                                    "value": "ServerRunTimeVersion"
+                                },
+                                {
+                                    "tag": "Value",
+                                    "attributes": {
+                                        "{http://www.w3.org/2001/XMLSchema-instance}type": "xs:string"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    )
+
+    ags_server_version = EditorProperty(
+        {
+            "formats": {
+                "agsJson": {
+                    "paths": [{
+                        "document": "main", "parentPath": "$.properties", "path": "$.properties.agsServerVersion"
+                    }]
+                },
+                "sddraft": {
+                    "paths": [
+                        {
+                            "parentPath": "./StagingSettings/PropertyArray",
+                            "path": "./StagingSettings/PropertyArray/PropertySetProperty[Key='AGSServerVersion']/Value",
+                            "tag": "PropertySetProperty",
+                            "attributes": {
+                                "{http://www.w3.org/2001/XMLSchema-instance}type": "typens:PropertySetProperty"
+                            },
+                            "children": [
+                                {
+                                    "tag": "Key",
+                                    "value": "AGSServerVersion"
+                                },
+                                {
+                                    "tag": "Value",
+                                    "attributes": {
+                                        "{http://www.w3.org/2001/XMLSchema-instance}type": "xs:string"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    )
+
+    admin_version = EditorProperty(
+        {
+            "formats": {
+                "agsJson": {
+                    "paths": [{
+                        "document": "main", "parentPath": "$.properties", "path": "$.properties.adminVersion"
+                    }]
+                },
+                "sddraft": {
+                    "paths": [
+                        {
+                            "parentPath": "./StagingSettings/PropertyArray",
+                            "path": "./StagingSettings/PropertyArray/PropertySetProperty[Key='AdminVersion']/Value",
+                            "tag": "PropertySetProperty",
+                            "attributes": {
+                                "{http://www.w3.org/2001/XMLSchema-instance}type": "typens:PropertySetProperty"
+                            },
+                            "children": [
+                                {
+                                    "tag": "Key",
+                                    "value": "AdminVersion"
+                                },
+                                {
+                                    "tag": "Value",
+                                    "attributes": {
+                                        "{http://www.w3.org/2001/XMLSchema-instance}type": "xs:string"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    )
+
+    wfs_properties = EditorProperty(
+        {
+            "formats": {
+                "agsJson": {
+                    "paths": [{
+                        "document": "main", "parentPath": "$.properties", "path": "$.properties.wfsProperties"
+                    }]
+                },
+                "sddraft": {
+                    "paths": [
+                        {
+                            "parentPath": "./StagingSettings/PropertyArray",
+                            "path": "./StagingSettings/PropertyArray/PropertySetProperty[Key='WFSProperties']/Value",
+                            "tag": "PropertySetProperty",
+                            "attributes": {
+                                "{http://www.w3.org/2001/XMLSchema-instance}type": "typens:PropertySetProperty"
+                            },
+                            "children": [
+                                {
+                                    "tag": "Key",
+                                    "value": "WFSProperties"
+                                },
+                                {
+                                    "tag": "Value",
+                                    "attributes": {
+                                        "{http://www.w3.org/2001/XMLSchema-instance}type": "xs:string"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    )
+
+    tile_cache_path = EditorProperty(
+        {
+            "formats": {
+                "agsJson": {
+                    "paths": [{
+                        "document": "main", "parentPath": "$.properties", "path": "$.properties.tileCachePath"
+                    }]
+                },
+                "sddraft": {
+                    "paths": [
+                        {
+                            "parentPath": "./StagingSettings/PropertyArray",
+                            "path": "./StagingSettings/PropertyArray/PropertySetProperty[Key='TileCachePath']/Value",
+                            "tag": "PropertySetProperty",
+                            "attributes": {
+                                "{http://www.w3.org/2001/XMLSchema-instance}type": "typens:PropertySetProperty"
+                            },
+                            "children": [
+                                {
+                                    "tag": "Key",
+                                    "value": "TileCachePath"
+                                },
+                                {
+                                    "tag": "Value",
+                                    "attributes": {
+                                        "{http://www.w3.org/2001/XMLSchema-instance}type": "xs:string"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
                 }
             }
         }
